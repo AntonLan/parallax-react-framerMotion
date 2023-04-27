@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import Tilt from 'react-parallax-tilt'
 import bg from '@/assets/bg.png'
 import firstMount from '@/assets/firstMount.png'
@@ -6,22 +6,11 @@ import secondMount from '@/assets/secondMount.png'
 import { Box, Typography } from '@mui/material'
 import { textVariant } from '@/utils/motion'
 import { motion } from 'framer-motion'
+import { useScroll } from '@/components/hooks/useScroll'
 
 
 const ParallaxSection: FC = () => {
-	const [scrollTop, setScrollTop] = useState('30%')
-
-	useEffect(() => {
-		const handleScroll = () => {
-			let result = (30 + (window.scrollY * 2.5 / 100)) + '%'
-			setScrollTop(result)
-		}
-		window.addEventListener('scroll', handleScroll)
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll)
-		}
-	}, [])
+	const scrollTop = useScroll()
 
 
 	return (
